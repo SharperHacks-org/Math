@@ -1,5 +1,5 @@
 ![SharperHacks logo](SHLLC-Logo.jpg)
-# Constants Library for .NET
+# Math Library for .NET
 ## SharperHacks.CoreLibs.Math.Interfaces
 
 Interfaces used in SharperHacks.CoreLibs.Math.
