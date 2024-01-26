@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <Deterministic>true</Deterministic>
-    <LanguageVersion>12.0</LanguageVersion>
+    <LanguageVersion>11.0</LanguageVersion>
     <Nullable>enable</Nullable>
     <PathMap>$(MSBuildThisFileDirectory)={SHLLC/CoreLibs/$(MSBuildProjectName)}/</PathMap>
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
