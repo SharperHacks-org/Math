@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <LanguageVersion>11.0</LanguageVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NeutralLanguage>en-US</NeutralLanguage>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -66,7 +65,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="2.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
