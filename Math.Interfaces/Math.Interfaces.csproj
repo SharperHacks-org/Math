@@ -18,7 +18,6 @@
     <Deterministic>true</Deterministic>
     <Nullable>enable</Nullable>
     <PathMap>$(MSBuildThisFileDirectory)={SHLLC/CoreLibs/$(MSBuildProjectName)}/</PathMap>
-    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>

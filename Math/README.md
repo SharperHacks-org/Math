@@ -13,8 +13,8 @@ Project URL: https://github.com/SharperHacks-org/Math
 Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Math
 
 ### Targets
-- net7.0
 - net8.0
+- net9.0
 
 ### Classes, Records & Structs
 
@@ -26,5 +26,5 @@ Extends IInterval to include GetFirstOf, GetLastOf and GetEnumerator; for byte,
 sbyte, short, ushort, int, uint, long and ulong.
 
 #### Stats
-
+A set of static statistics algorithms.
 
