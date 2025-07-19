@@ -5,11 +5,8 @@
     <RootNamespace>SharperHacks.CoreLinbs$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Authors>Joseph W Donahue</Authors>
-    <Copyright>Joseph W Donahue &amp; Sharper Hacks LLC (WA)</Copyright>
-    <Company>Sharper Hacks LLC (US-WA)</Company>
-    <Description>A collection of Math routines.</Description>
+  <PropertyGroup Condition="'$(Deterministic)' == 'true' And '$(PathMap)' == ''">
+    <PathMap>$(SolutionDir)={$(PathMapRoot)/$(SolutionName)}/</PathMap>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -42,7 +39,6 @@
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <Deterministic>true</Deterministic>
     <Nullable>enable</Nullable>
-    <PathMap>$(MSBuildThisFileDirectory)={SHLLC/CoreLibs/Math}/</PathMap>
     <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
 
@@ -73,7 +69,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="4.2.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
