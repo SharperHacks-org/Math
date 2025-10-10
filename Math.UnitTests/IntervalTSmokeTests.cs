@@ -1,7 +1,5 @@
 // Copyright and trademark notices at bottom of file.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using SharperHacks.CoreLibs.Constants;
 using SharperHacks.CoreLibs.Math.Interfaces;
 

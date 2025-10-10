@@ -1,7 +1,5 @@
 // Copyright and trademark notices at bottom of file.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using System.Diagnostics.CodeAnalysis;
 
 namespace SharperHacks.CoreLibs.Math.UnitTests;
