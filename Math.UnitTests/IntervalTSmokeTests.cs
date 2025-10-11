@@ -60,7 +60,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -77,7 +77,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -98,7 +98,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -115,7 +115,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -136,7 +136,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -153,7 +153,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -174,7 +174,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1u, immutableArray[0]);
         Assert.AreEqual(2u, immutableArray[1]);
         Assert.AreEqual(3u, immutableArray[2]);
@@ -191,7 +191,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2u, immutableArray[0]);
         Assert.AreEqual(3u, immutableArray[1]);
         Assert.AreEqual(4u, immutableArray[2]);
@@ -212,7 +212,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -229,7 +229,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -250,7 +250,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -267,7 +267,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -288,7 +288,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1, immutableArray[0]);
         Assert.AreEqual(2, immutableArray[1]);
         Assert.AreEqual(3, immutableArray[2]);
@@ -305,7 +305,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2, immutableArray[0]);
         Assert.AreEqual(3, immutableArray[1]);
         Assert.AreEqual(4, immutableArray[2]);
@@ -326,7 +326,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         var immutableArray = inclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(1ul, immutableArray[0]);
         Assert.AreEqual(2ul, immutableArray[1]);
         Assert.AreEqual(3ul, immutableArray[2]);
@@ -343,7 +343,7 @@ public class IntervalTSmokeTests
         Assert.AreEqual(3, itemCount);
 
         immutableArray = exclusiveRange.ToImmutableArray();
-        Assert.AreEqual(3, immutableArray.Length);
+        Assert.HasCount(3, immutableArray);
         Assert.AreEqual(2ul, immutableArray[0]);
         Assert.AreEqual(3ul, immutableArray[1]);
         Assert.AreEqual(4ul, immutableArray[2]);
