@@ -1,6 +1,6 @@
 // Copyright and trademark notices at bottom of file.
 
-using SharperHacks.CoreLibsMath;
+using SharperHacks.CoreLibs.Math;
 
 using System.Diagnostics.CodeAnalysis;
 

@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Numerics;
 using System.Text;
 
-namespace SharperHacks.CoreLibsMath;
+namespace SharperHacks.CoreLibs.Math;
 
 /// <summary>
 /// An immutable implementation of IPoint.
