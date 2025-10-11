@@ -4,56 +4,32 @@ using SharperHacks.CoreLibs.Constraints;
 using SharperHacks.CoreLibs.Math.Interfaces;
 
 using System.Collections.Immutable;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
 namespace SharperHacks.CoreLibs.Math;
 
 /// <summary>
-/// An immutable implementation of IPoint.
+/// An implementation of IPolygon{T}
 /// </summary>
-public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
+/// <typeparam name="T">The numeric type used to specify locations</typeparam>
+public class ImmutablePolygon<T> : IPolygon<T> where T : INumber<T>
 {
-    /// <inheritdoc cref="IPoint{T}.Dimensions"/>
-    public int Dimensions { get; init; }
+    /// <inheritdoc cref="IPolygon{T}.VertexCount"/>
+    public int VertexCount { get; }
 
-    /// <inheritdoc cref="IPoint{T}.Coordinates"/>
-    public ImmutableList<T> Coordinates { get; init; }
-
-    /// <summary>
-    /// constructor taking coordinate value array.
-    /// </summary>
-    /// <param name="coordinates"></param>
-    public ImmutablePoint(params T[] coordinates)
-    {
-        Verify.IsNotNull(coordinates);
-        Verify.IsGreaterThan(coordinates.Length, 0, "Coordinate values must not be empty.");
-
-        Dimensions = coordinates.Length;
-        Coordinates = ImmutableList.Create(coordinates);
-    }
+    /// <inheritdoc cref="IPolygon{T}.Vertices"/>
+    public ImmutableList<IPoint<T>> Vertices { get; }
 
     /// <summary>
-    /// Constructor for standard 2D geometry.
+    /// 
     /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    public ImmutablePoint(T x, T y)
+    /// <param name="vertices"></param>
+    public ImmutablePolygon(params IPoint<T>[] vertices)
     {
-        Dimensions = 2;
-        Coordinates = ImmutableList.Create(x, y);
-    }
-
-    /// <summary>
-    /// Constructor for standard 3D geometry.
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="z"></param>
-    public ImmutablePoint(T x, T y, T z)
-    {
-        Dimensions = 3;
-        Coordinates = ImmutableList.Create(x, y, z);
+        VertexCount = vertices.Length;
+        Vertices = ImmutableList.Create(vertices);
     }
 
     /// <inheritdoc/>
@@ -70,22 +46,21 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 
         if (diagnostic)
         {
-            sb.Append("ImmutablePoint { Dimensions = ")
-              .Append(Dimensions)
-              .Append(", Coordinates = ");
+            sb.Append("ImmutablePolygon { VertexCount = ")
+              .Append(VertexCount)
+              .Append(", Vertices = ");
         }
 
-        sb.Append('(');
+        sb.Append('[');
 
-        var downCounter = Dimensions;
-        foreach (var item in Coordinates)
+        var downCounter = VertexCount;
+        foreach(var item in Vertices)
         {
             sb.Append(item);
             downCounter--;
             if (downCounter > 0) sb.Append(',');
         }
-
-        sb.Append(')');
+        sb.Append(']');
 
         if (diagnostic) sb.Append(" }");
 

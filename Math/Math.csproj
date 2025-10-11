@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <AssemblyName>SharperHacks.CoreLibs.$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>SharperHacks.CoreLinbs$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>SharperHacks.CoreLibs.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Deterministic)' == 'true' And '$(PathMap)' == ''">
