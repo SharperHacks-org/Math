@@ -25,5 +25,11 @@ are inclusive or exclusive.
 #### IntervalBoundaryType
 Enumeration representing whether an interval boundary is inclusive or exclusive.
 
+#### IPoint\<T\>
+A generic variable axis point interface.
+
+#### IPoloygon\<T\>
+A generic polygon interface. Essentially a vertex list of IPoint's.
+
 
 

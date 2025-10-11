@@ -1,10 +1,8 @@
 // Copyright and trademark notices at bottom of file.
 
-using SharperHacks.CoreLibs.Constraints;
 using SharperHacks.CoreLibs.Math.Interfaces;
 
 using System.Collections.Immutable;
-using System.Linq;
 using System.Numerics;
 using System.Text;
 

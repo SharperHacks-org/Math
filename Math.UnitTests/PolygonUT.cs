@@ -1,11 +1,5 @@
 // Copyright and trademark notices at bottom of file.
 
-using SharperHacks.CoreLibs.Math;
-using SharperHacks.CoreLibs.Math.Interfaces;
-using SharperHacks.CoreLibs.Math.UnitTests;
-
-using System.Collections.Immutable;
-
 namespace SharperHacks.CoreLibs.Math.UnitTests;
 
 [TestClass]
@@ -29,6 +23,8 @@ public class PolygonUT
             new ImmutablePoint<int>(2, 1));
 
             Console.WriteLine(polygon1.ToString(true));
+
+        Assert.AreEqual(4, polygon1.VertexCount);
     }
 }
 
