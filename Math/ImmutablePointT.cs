@@ -14,12 +14,17 @@ namespace SharperHacks.CoreLibs.Math;
 /// </summary>
 public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 {
+    #region IPoint{T}
+
     /// <inheritdoc cref="IPoint{T}.Dimensions"/>
     public int Dimensions { get; init; }
 
     /// <inheritdoc cref="IPoint{T}.Coordinates"/>
     public ImmutableList<T> Coordinates { get; init; }
 
+    #endregion IPoint{T}
+
+    #region Constructors
     /// <summary>
     /// constructor taking coordinate value array.
     /// </summary>
@@ -55,8 +60,9 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
         Dimensions = 3;
         Coordinates = ImmutableList.Create(x, y, z);
     }
+    #endregion Constructors
 
-    /// <inheritdoc/>
+    /// <inheritdoc cref="object.ToString"/>
     public override string ToString() => ToString(false);
 
     /// <summary>

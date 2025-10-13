@@ -1,6 +1,5 @@
 // Copyright and trademark notices at bottom of file.
 
-
 using System.Collections.Immutable;
 using System.Numerics;
 

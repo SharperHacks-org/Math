@@ -6,7 +6,7 @@ Interfaces used in SharperHacks.CoreLibs.Math.
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
-Contact: joseph@sharperhacks.org
+Contact: joseph@sharperhacks.org (Drop me a line or two, let me know how you're using these bits and what I can do to improve/add to them.)
 
 Project URL: https://github.com/SharperHacks-org/Math
 

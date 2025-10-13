@@ -13,18 +13,36 @@ public class PolygonUT
         new(2,1)
     };
 
+    ImmutablePolygon<int> _polygon1 = new(
+        new ImmutablePoint<int>(1, 1),
+        new ImmutablePoint<int>(1, 2),
+        new ImmutablePoint<int>(2, 2),
+        new ImmutablePoint<int>(2, 1));
+
     [TestMethod]
     public void SmokeIt()
     {
-        var polygon1 = new ImmutablePolygon<int>(
-            new ImmutablePoint<int>(1, 1),
-            new ImmutablePoint<int>(1, 2),
-            new ImmutablePoint<int>(2, 2),
-            new ImmutablePoint<int>(2, 1));
+        Assert.AreEqual(4, _polygon1.VertexCount);
+    }
 
-            Console.WriteLine(polygon1.ToString(true));
+    [TestMethod]
+    public void TestToString()
+    {
+        const string expectedEnabled = "ImmutablePolygon { VertexCount = 4, Vertices = [(1,1),(1,2),(2,2),(2,1)] }";
+        const string expectedDisabled = "[(1,1),(1,2),(2,2),(2,1)]";
+        const string expectedNormal = "[(1,1),(1,2),(2,2),(2,1)]";
 
-        Assert.AreEqual(4, polygon1.VertexCount);
+        string diagnosticEnabled = _polygon1.ToString(true);
+        string diagnosticDisabled = _polygon1.ToString(false) ;
+        string normalForm = _polygon1.ToString();
+
+        Console.WriteLine($"ToString(true) == {diagnosticEnabled}");
+        Console.WriteLine($"ToString(false) == {diagnosticDisabled}");
+        Console.WriteLine($"ToString() == {normalForm}");
+
+        Assert.AreEqual(expectedEnabled, diagnosticEnabled );
+        Assert.AreEqual(expectedDisabled, diagnosticDisabled );
+        Assert.AreEqual(expectedNormal, normalForm );
     }
 }
 

@@ -19,6 +19,7 @@
     <PackageReadMeFile>README.md</PackageReadMeFile>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
+    <TargetFrameworks>$(TargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -69,7 +70,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="5.0.2" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>

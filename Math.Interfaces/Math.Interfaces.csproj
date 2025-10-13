@@ -5,6 +5,7 @@
     <AssemblyName>SharperHacks.CoreLibs.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>SharperHacks.CoreLibs.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <Nullable>enable</Nullable>
+    <TargetFrameworks>$(TargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Deterministic)' == 'true' And '$(PathMap)' == ''">
