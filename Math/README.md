@@ -15,15 +15,22 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Math
 ### Targets
 - net8.0
 - net9.0
+- net10.0
 
 ### Classes, Records & Structs
 
-#### Interval\<T\>
+#### Interval{T}
 Implements IInterval.
 
 #### IIntervalExtensions
 Extends IInterval to include GetFirstOf, GetLastOf and GetEnumerator; for byte,
 sbyte, short, ushort, int, uint, long and ulong.
+
+#### ImmutablePoint{T}
+An immutable implementation of IPoint{T}.
+
+#### ImmutablePolygon{T}
+An implementation of IPolygon{T}.
 
 #### Stats
 A set of static statistics algorithms.
