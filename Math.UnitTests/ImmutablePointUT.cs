@@ -6,7 +6,7 @@ namespace SharperHacks.CoreLibs.Math.UnitTests;
 
 [TestClass]
 [ExcludeFromCodeCoverage]
-public class PointUT
+public class ImmutablePointUT
 {
     [TestMethod]
     public void SmokeIt()
@@ -26,6 +26,23 @@ public class PointUT
         Assert.AreEqual(1, p3.Coordinates[0]);
 
         Assert.AreEqual(2, p2.Coordinates[1]);
+    }
+
+    [TestMethod]
+    public void EqualityTests()
+    {
+        var p1 = new ImmutablePoint<int>(100, 100);
+        var p2 = p1;
+        var p3 = new ImmutablePoint<int>(100, 100);
+
+        Console.WriteLine($"{p1}, {p1.ToString(true)}");
+        Console.WriteLine($"{p2}, {p2.ToString(true)}");
+        Console.WriteLine($"{p3}, {p3.ToString(true)}");
+
+        Assert.AreEqual(p1, p2);
+        Assert.AreEqual(p1, p3);
+        Assert.AreEqual(p2, p3);
+        Assert.AreEqual(p3, p3);
     }
 }
 
