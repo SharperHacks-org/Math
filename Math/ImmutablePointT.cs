@@ -12,18 +12,24 @@ namespace SharperHacks.CoreLibs.Math;
 /// <summary>
 /// An immutable implementation of IPoint.
 /// </summary>
+/// <remarks>
+/// Includes value semantics for equality and hash code. No attempt will be
+/// made to provide other comparison operators, as that should be done at
+/// the appropriate domain specific container level. Addition, subtraction,
+/// multiplication and division operators should be included in derived types.
+/// </remarks>
 public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 {
     #region IPoint{T}
 
     /// <inheritdoc cref="IPoint{T}.Dimensions"/>
-    public int Dimensions { get; init; }
+    public int Dimensions => Coordinates.Count;
 
     /// <inheritdoc cref="IPoint{T}.Coordinates"/>
     public ImmutableList<T> Coordinates { get; init; }
 
     #endregion IPoint{T}
-
+    
     #region Constructors
     /// <summary>
     /// constructor taking coordinate value array.
@@ -34,7 +40,6 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
         Verify.IsNotNull(coordinates);
         Verify.IsGreaterThan(coordinates.Length, 0, "Coordinate values must not be empty.");
 
-        Dimensions = coordinates.Length;
         Coordinates = ImmutableList.Create(coordinates);
     }
 
@@ -45,7 +50,6 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// <param name="y"></param>
     public ImmutablePoint(T x, T y)
     {
-        Dimensions = 2;
         Coordinates = ImmutableList.Create(x, y);
     }
 
@@ -57,10 +61,32 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// <param name="z"></param>
     public ImmutablePoint(T x, T y, T z)
     {
-        Dimensions = 3;
         Coordinates = ImmutableList.Create(x, y, z);
     }
     #endregion Constructors
+
+    #region Object Overrides and special methods
+
+    /// <inheritdoc/>
+    public bool Equals(ImmutablePoint<T> other) =>
+        other.Dimensions == Dimensions && Coordinates.SequenceEqual(other.Coordinates);
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        var hash = new HashCode();
+
+        hash.Add(Dimensions);
+
+        foreach (var component in Coordinates)
+        {
+            hash.Add(component);
+        }
+
+        return hash.ToHashCode();
+    }
+
+    #endregion Object Overrides and special methods
 
     /// <inheritdoc cref="object.ToString"/>
     public override string ToString() => ToString(false);
