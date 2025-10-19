@@ -31,6 +31,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     #endregion IPoint{T}
     
     #region Constructors
+
     /// <summary>
     /// constructor taking coordinate value array.
     /// </summary>
@@ -48,10 +49,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public ImmutablePoint(T x, T y)
-    {
-        Coordinates = ImmutableList.Create(x, y);
-    }
+    public ImmutablePoint(T x, T y) => Coordinates = [x, y];
 
     /// <summary>
     /// Constructor for standard 3D geometry.
@@ -59,10 +57,14 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <param name="z"></param>
-    public ImmutablePoint(T x, T y, T z)
-    {
-        Coordinates = ImmutableList.Create(x, y, z);
-    }
+    public ImmutablePoint(T x, T y, T z) => Coordinates = [x, y, z];
+
+    /// <summary>
+    /// Constructor taking coordinate value list.
+    /// </summary>
+    /// <param name="coordinates"></param>
+    public ImmutablePoint(List<T> coordinates) => Coordinates = coordinates.ToImmutableList();
+
     #endregion Constructors
 
     #region Object Overrides and special methods
@@ -85,8 +87,6 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 
         return hash.ToHashCode();
     }
-
-    #endregion Object Overrides and special methods
 
     /// <inheritdoc cref="object.ToString"/>
     public override string ToString() => ToString(false);
@@ -123,6 +123,8 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 
         return sb.ToString();
     }
+
+    #endregion Object Overrides and special methods
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
