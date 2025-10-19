@@ -17,12 +17,19 @@ public interface IPoint<T> where T : INumber<T>
     /// <remarks>
     /// Must be a non-zero positive value.
     /// </remarks>
-    public int Dimensions { get; }
+    int Dimensions { get; }
 
     /// <summary>
     /// Get a list of points on each axis.
     /// </summary>
-    public ImmutableList<T> Coordinates { get; }
+    ImmutableList<T> Coordinates { get; }
+
+    /// <summary>
+    /// Get the component at the specified index.
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns>The component value at that index.</returns>
+    T this[int index] => Coordinates[index];
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
