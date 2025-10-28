@@ -1,35 +1,25 @@
 // Copyright and trademark notices at bottom of file.
 
-using System.Collections.Immutable;
-using System.Numerics;
+using SharperHacks.CoreLibs.Math.Interfaces;
 
-namespace SharperHacks.CoreLibs.Math.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
-/// <summary>
-/// A generic point interface
-/// </summary>
-/// <typeparam name="T">The numeric type used to specify locations</typeparam>
-public interface IPoint<T> where T : INumber<T>
+namespace SharperHacks.CoreLibs.Math.UT;
+
+[ExcludeFromCodeCoverage]
+[TestClass]
+public class IPointUT
 {
-    /// <summary>
-    /// Get the dimensionality associated with this point.
-    /// </summary>
-    /// <remarks>
-    /// Must be a non-zero positive value.
-    /// </remarks>
-    int Dimensions { get; }
+    [TestMethod]
+    public void CoverDefaultImplementationPaths()
+    {
+        IPoint<int> p1 = new ImmutablePoint<int>(0, 1, 2, 3, 4, 5);
 
-    /// <summary>
-    /// Get a list of points on each axis.
-    /// </summary>
-    ImmutableList<T> Coordinates { get; }
-
-    /// <summary>
-    /// Get the component at the specified index.
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns>The component value at that index.</returns>
-    T this[int index] => Coordinates[index];
+        for(var idx = 0; idx < p1.Dimensions; idx++)
+        {
+            Assert.AreEqual(idx, p1[idx]);
+        }
+    }
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
