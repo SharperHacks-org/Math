@@ -2,10 +2,10 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace SharperHacks.CoreLibs.Math.UnitTests;
+namespace SharperHacks.CoreLibs.Math.UT;
 
-[TestClass]
 [ExcludeFromCodeCoverage]
+[TestClass]
 public class ImmutablePointUT
 {
     [TestMethod]
@@ -43,6 +43,19 @@ public class ImmutablePointUT
         Assert.AreEqual(p1, p3);
         Assert.AreEqual(p2, p3);
         Assert.AreEqual(p3, p3);
+    }
+
+    [TestMethod]
+    public void CoverGetHashCode()
+    {
+        var p1 = new ImmutablePoint<int>(0, 0);
+        var p2 = p1;
+        var p3 = new ImmutablePoint<float>(0f, 0f);
+        var p4 = new ImmutablePoint<float>(0.5f, 0.5f);
+
+        Assert.AreEqual(p1.GetHashCode(), p2.GetHashCode());
+        Assert.AreEqual(p2.GetHashCode(), p3.GetHashCode()); 
+        Assert.AreNotEqual(p3.GetHashCode(), p4.GetHashCode());
     }
 }
 

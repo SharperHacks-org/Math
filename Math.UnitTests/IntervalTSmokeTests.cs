@@ -5,7 +5,7 @@ using SharperHacks.CoreLibs.Math.Interfaces;
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace SharperHacks.CoreLibs.Math.UnitTests;
+namespace SharperHacks.CoreLibs.Math.UT;
 
 [ExcludeFromCodeCoverage]
 [TestClass]

@@ -54,7 +54,7 @@ public class ImmutablePolygon<T> : IPolygon<T> where T : INumber<T>
         var downCounter = VertexCount;
         foreach(var item in Vertices)
         {
-            sb.Append(item);
+            sb.Append(item.ToString()); // JwD: We don't need diagnostics here.
             downCounter--;
             if (downCounter > 0) sb.Append(',');
         }

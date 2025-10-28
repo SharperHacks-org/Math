@@ -1,7 +1,10 @@
 // Copyright and trademark notices at bottom of file.
 
-namespace SharperHacks.CoreLibs.Math.UnitTests;
+using System.Diagnostics.CodeAnalysis;
 
+namespace SharperHacks.CoreLibs.Math.UT;
+
+[ExcludeFromCodeCoverage]
 [TestClass]
 public class PolygonUT
 {
@@ -40,7 +43,7 @@ public class PolygonUT
         Console.WriteLine($"ToString(false) == {diagnosticDisabled}");
         Console.WriteLine($"ToString() == {normalForm}");
 
-        Assert.AreEqual(expectedEnabled, diagnosticEnabled );
+        Assert.AreEqual(expectedEnabled, diagnosticEnabled);
         Assert.AreEqual(expectedDisabled, diagnosticDisabled );
         Assert.AreEqual(expectedNormal, normalForm );
     }

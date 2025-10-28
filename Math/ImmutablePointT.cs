@@ -102,7 +102,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 
         if (diagnostic)
         {
-            sb.Append("ImmutablePoint { Dimensions = ")
+            sb.Append($"{nameof(ImmutablePoint<T>)} {{ Dimensions = ")
               .Append(Dimensions)
               .Append(", Coordinates = ");
         }
@@ -124,7 +124,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
         return sb.ToString();
     }
 
-    #endregion Object Overrides and special methods
+#endregion Object Overrides and special methods
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
