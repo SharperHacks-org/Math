@@ -5,6 +5,7 @@ using SharperHacks.CoreLibs.Constraints;
 using SharperHacks.CoreLibs.Math.Interfaces;
 
 using System.Collections.Immutable;
+using System.Drawing;
 using System.Numerics;
 
 namespace SharperHacks.CoreLibs.Math;
@@ -12,21 +13,24 @@ namespace SharperHacks.CoreLibs.Math;
 /// <summary>
 /// Implements IPoint{T} with minimal cartesian coordinate operators.
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public readonly record struct ImmutableCartesianPoint<T>
-    : IPoint<T> where T : INumber<T>
+/// <typeparam name="TNumeric"></typeparam>
+public readonly record struct ImmutableCartesianPoint<TNumeric> :
+    IPoint<TNumeric>
+    where TNumeric : INumber<TNumeric>
 {
-    private readonly ImmutablePoint<T> _point;
+    private readonly ImmutablePoint<TNumeric> _point;
 
-    #region IPoint{T}
+    #region IPoint{TNumber}
 
-    /// <inheritdoc cref="IPoint{T}.Dimensions"/>
+    /// <inheritdoc cref="IPoint{TNumber}.Dimensions"/>
     public int Dimensions => _point.Dimensions;
 
-    /// <inheritdoc cref="IPoint{T}.Coordinates"/>
-    public ImmutableList<T> Coordinates => _point.Coordinates;
+    /// <inheritdoc cref="IPoint{TNumber}.Coordinates"/>
+    public ImmutableList<TNumeric> Coordinates => _point.Coordinates;
 
-    #endregion IPoint{T}
+    TNumeric this[int index] => Coordinates[index];
+
+#endregion IPoint{T}
 
     #region Constructors
 
@@ -34,12 +38,12 @@ public readonly record struct ImmutableCartesianPoint<T>
     /// constructor taking coordinate value array.
     /// </summary>
     /// <param name="coordinates"></param>
-    public ImmutableCartesianPoint(params T[] coordinates)
+    public ImmutableCartesianPoint(params TNumeric[] coordinates)
     {
         Verify.IsNotNull(coordinates);
         Verify.IsGreaterThan(coordinates.Length, 0, "Coordinate values must not be empty.");
 
-        _point = new ImmutablePoint<T>(coordinates);
+        _point = new ImmutablePoint<TNumeric>(coordinates);
     }
 
     /// <summary>
@@ -47,8 +51,8 @@ public readonly record struct ImmutableCartesianPoint<T>
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public ImmutableCartesianPoint(T x, T y) => 
-        _point = new ImmutablePoint<T>(x, y);
+    public ImmutableCartesianPoint(TNumeric x, TNumeric y) =>
+        _point = new ImmutablePoint<TNumeric>(x, y);
 
     /// <summary>
     /// Constructor for standard 3D geometry.
@@ -56,19 +60,19 @@ public readonly record struct ImmutableCartesianPoint<T>
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <param name="z"></param>
-    public ImmutableCartesianPoint(T x, T y, T z) =>
-        _point = new ImmutablePoint<T>(x, y,z);
+    public ImmutableCartesianPoint(TNumeric x, TNumeric y, TNumeric z) =>
+        _point = new ImmutablePoint<TNumeric>(x, y, z);
 
     /// <summary>
     /// Constructor taking List{T}
     /// </summary>
     /// <param name="coordinates"></param>
-    public ImmutableCartesianPoint(List<T> coordinates)
+    public ImmutableCartesianPoint(List<TNumeric> coordinates)
     {
         Verify.IsNotNull(coordinates);
         Verify.IsGreaterThan(coordinates.Count, 0, "Coordinate values must not be empty.");
 
-        _point = new ImmutablePoint<T>(coordinates);
+        _point = new ImmutablePoint<TNumeric>(coordinates);
     }
 
     #endregion Constructors
@@ -76,7 +80,7 @@ public readonly record struct ImmutableCartesianPoint<T>
     #region Object Overrides and special methods
 
     /// <inheritdoc/>
-    public bool Equals(ImmutableCartesianPoint<T> other) =>
+    public bool Equals(ImmutableCartesianPoint<TNumeric> other) =>
         _point.Equals(other._point);
 
     /// <inheritdoc/>
@@ -93,46 +97,55 @@ public readonly record struct ImmutableCartesianPoint<T>
     #region Operators
 
     /// <summary>
-    /// Get component at the specified index.
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-    public T this[int index] => Coordinates[index];
-
-    /// <summary>
-    /// Sum two IPoint{T}'s.
+    /// Add the right operands components to those of the left and
+    /// return a new ImmutableCartesianPoint{T}.
     /// </summary>
     /// <param name="left"></param>
     /// <param name="right"></param>
     /// <returns></returns>
-    public static ImmutableCartesianPoint<T> 
-        operator +(ImmutableCartesianPoint<T> left, IPoint<T> right) 
-        => Sum(left, right);
+    /// <exception cref="VerifyException">
+    /// Throws VerifyException if either of the arguments is null, or
+    /// the number of coordinate components do not match.
+    /// </exception>
+    public static ImmutableCartesianPoint<TNumeric> operator +
+        (ImmutableCartesianPoint<TNumeric> left, 
+        IPoint<TNumeric> right) => Sum(left, right);
 
     /// <summary>
-    /// Subtract right operand from left.
+    /// Subtract the right operands components from those of the left and
+    /// return a new ImmutableCartesianPoint{T}.
     /// </summary>
     /// <param name="left"></param>
     /// <param name="right"></param>
     /// <returns></returns>
-    public static ImmutableCartesianPoint<T>
-        operator -(ImmutableCartesianPoint<T> left, IPoint<T> right)
-        => Diff(left, right);
+    /// <exception cref="VerifyException">
+    /// Throws VerifyException if either of the arguments is null, or
+    /// the number of coordinate components do not match.
+    /// </exception>
+    public static ImmutableCartesianPoint<TNumeric> operator -
+        (ImmutableCartesianPoint<TNumeric> left, 
+        IPoint<TNumeric> right) => Diff(left, right);
 
     /// <summary>
-    /// Multiply the point by the scale factor.
+    /// Multiply each of the components on the left, by the 
+    /// scaleFactor on the right.
     /// </summary>
-    /// <param name="p"></param>
+    /// <param name="point"></param>
     /// <param name="scaleFactor"></param>
-    /// <returns>
-    /// New ImmutableCartesionPoint{T}.
-    /// </returns>
-    public static ImmutableCartesianPoint<T>
-        operator *(ImmutableCartesianPoint<T> p, T scaleFactor)
+    /// <returns></returns>
+    /// <exception cref="VerifyException">
+    /// Throws VerifyException if either of the arguments is null, or
+    /// the <paramref name="scaleFactor"/> is null.
+    /// </exception>
+    public static ImmutableCartesianPoint<TNumeric> operator *
+        (ImmutableCartesianPoint<TNumeric> point, TNumeric scaleFactor)
     {
-        var results = new List<T>();
+        Verify.IsNotNull(point, nameof(point));
+        Verify.IsNotNull(scaleFactor, nameof(scaleFactor));
 
-        foreach (var component in p.Coordinates)
+        var results = new List<TNumeric>();
+
+        foreach (var component in point.Coordinates)
         {
             checked
             {
@@ -140,21 +153,30 @@ public readonly record struct ImmutableCartesianPoint<T>
             }
         }
 
-        return new ImmutableCartesianPoint<T>(results);
+        return new ImmutableCartesianPoint<TNumeric>(results);
     }
 
     /// <summary>
-    /// 
+    /// Divide each of the components on the left, by the 
+    /// scaleFactor on the right.
     /// </summary>
-    /// <param name="p"></param>
+    /// <param name="point"></param>
     /// <param name="scaleFactor"></param>
     /// <returns></returns>
-    public static ImmutableCartesianPoint<T> 
-        operator /(ImmutableCartesianPoint<T> p, T scaleFactor)
+    /// <exception cref="VerifyException">
+    /// Throws VerifyException if either of the arguments is null, or
+    /// the <paramref name="scaleFactor"/> is null.
+    /// </exception>
+    public static ImmutableCartesianPoint<TNumeric> operator /
+        (ImmutableCartesianPoint<TNumeric> point, TNumeric scaleFactor)
     {
-        var results = new List<T>();
+        Verify.IsNotNull(point, nameof(point));
+        Verify.IsNotNull(scaleFactor, nameof(scaleFactor))  ;
+        Verify.AreNotEqual(TNumeric.Zero, scaleFactor);
+        
+        var results = new List<TNumeric>();
 
-        foreach(var component in p.Coordinates)
+        foreach (var component in point.Coordinates)
         {
             checked
             {
@@ -162,17 +184,19 @@ public readonly record struct ImmutableCartesianPoint<T>
             }
         }
 
-        return new ImmutableCartesianPoint<T>(results);
+        return new ImmutableCartesianPoint<TNumeric>(results);
     }
 
-    private static ImmutableCartesianPoint<T> Sum(ImmutableCartesianPoint<T> left, IPoint<T> right)
+    private static ImmutableCartesianPoint<TNumeric> Sum
+        (ImmutableCartesianPoint<TNumeric> left,
+        IPoint<TNumeric> right)
     {
         Verify.IsNotNull(left);
         Verify.IsNotNull(right);
         Verify.AreEqual(left.Dimensions, right.Dimensions,
             "Left and right operands, must have same number of dimensions.");
 
-        var results = new List<T>();
+        var results = new List<TNumeric>();
 
         for (var idx = 0; idx < left.Dimensions; idx++)
         {
@@ -185,14 +209,16 @@ public readonly record struct ImmutableCartesianPoint<T>
         return new(results);
     }
 
-    private static ImmutableCartesianPoint<T> Diff(ImmutableCartesianPoint<T> left, IPoint<T> right)
+    private static ImmutableCartesianPoint<TNumeric> Diff
+        (ImmutableCartesianPoint<TNumeric> left,
+        IPoint<TNumeric> right)
     {
         Verify.IsNotNull(left);
         Verify.IsNotNull(right);
         Verify.AreEqual(left.Dimensions, right.Dimensions,
             "Left and right operands, must have same number of dimensions.");
 
-        var results = new List<T>();
+        var results = new List<TNumeric>();
 
         for (var idx = 0; idx < left.Dimensions; idx++)
         {
@@ -204,9 +230,9 @@ public readonly record struct ImmutableCartesianPoint<T>
 
         return new(results);
     }
-
-
+    
     #endregion Operators
+
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

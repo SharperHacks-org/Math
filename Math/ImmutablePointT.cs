@@ -18,7 +18,7 @@ namespace SharperHacks.CoreLibs.Math;
 /// the appropriate domain specific container level. Addition, subtraction,
 /// multiplication and division operators should be included in derived types.
 /// </remarks>
-public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
+public readonly record struct ImmutablePoint<TNumeric> : IPoint<TNumeric> where TNumeric: INumber<TNumeric>
 {
     #region IPoint{T}
 
@@ -26,7 +26,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     public int Dimensions => Coordinates.Count;
 
     /// <inheritdoc cref="IPoint{T}.Coordinates"/>
-    public ImmutableList<T> Coordinates { get; init; }
+    public ImmutableList<TNumeric> Coordinates { get; init; }
 
     #endregion IPoint{T}
     
@@ -36,7 +36,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// constructor taking coordinate value array.
     /// </summary>
     /// <param name="coordinates"></param>
-    public ImmutablePoint(params T[] coordinates)
+    public ImmutablePoint(params TNumeric[] coordinates)
     {
         Verify.IsNotNull(coordinates);
         Verify.IsGreaterThan(coordinates.Length, 0, "Coordinate values must not be empty.");
@@ -49,7 +49,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public ImmutablePoint(T x, T y) => Coordinates = [x, y];
+    public ImmutablePoint(TNumeric x, TNumeric y) => Coordinates = [x, y];
 
     /// <summary>
     /// Constructor for standard 3D geometry.
@@ -57,20 +57,20 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <param name="z"></param>
-    public ImmutablePoint(T x, T y, T z) => Coordinates = [x, y, z];
+    public ImmutablePoint(TNumeric x, TNumeric y, TNumeric z) => Coordinates = [x, y, z];
 
     /// <summary>
     /// Constructor taking coordinate value list.
     /// </summary>
     /// <param name="coordinates"></param>
-    public ImmutablePoint(List<T> coordinates) => Coordinates = coordinates.ToImmutableList();
+    public ImmutablePoint(List<TNumeric> coordinates) => Coordinates = coordinates.ToImmutableList();
 
     #endregion Constructors
 
     #region Object Overrides and special methods
 
     /// <inheritdoc/>
-    public bool Equals(ImmutablePoint<T> other) =>
+    public bool Equals(ImmutablePoint<TNumeric> other) =>
         other.Dimensions == Dimensions && Coordinates.SequenceEqual(other.Coordinates);
 
     /// <inheritdoc/>
@@ -102,7 +102,7 @@ public readonly record struct ImmutablePoint<T> : IPoint<T> where T: INumber<T>
 
         if (diagnostic)
         {
-            sb.Append($"{nameof(ImmutablePoint<T>)} {{ Dimensions = ")
+            sb.Append($"{nameof(ImmutablePoint<TNumeric>)} {{ Dimensions = ")
               .Append(Dimensions)
               .Append(", Coordinates = ");
         }

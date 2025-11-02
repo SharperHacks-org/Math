@@ -6,10 +6,10 @@ using System.Numerics;
 namespace SharperHacks.CoreLibs.Math.Interfaces;
 
 /// <summary>
-/// A generic point interface
+/// A generic point interface.
 /// </summary>
-/// <typeparam name="T">The numeric type used to specify locations</typeparam>
-public interface IPoint<T> where T : INumber<T>
+/// <typeparam name="TNumeric">The numeric type used to specify locations</typeparam>
+public interface IPoint<TNumeric> where TNumeric : INumber<TNumeric>
 {
     /// <summary>
     /// Get the dimensionality associated with this point.
@@ -22,14 +22,14 @@ public interface IPoint<T> where T : INumber<T>
     /// <summary>
     /// Get a list of points on each axis.
     /// </summary>
-    ImmutableList<T> Coordinates { get; }
+    ImmutableList<TNumeric> Coordinates { get; }
 
     /// <summary>
     /// Get the component at the specified index.
     /// </summary>
     /// <param name="index"></param>
     /// <returns>The component value at that index.</returns>
-    T this[int index] => Coordinates[index];
+    TNumeric this[int index] => Coordinates[index];
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
