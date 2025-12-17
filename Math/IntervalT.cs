@@ -112,7 +112,7 @@ public record Interval<T> : IInterval<T> where T : IComparable<T>
         Verify.IsTrue(LowerBound.CompareTo(UpperBound) <= 0);
     }
 
-    private readonly char[] _lowerBoundaryInclusiveSpecifiers = new [] { '[' };
+    private readonly char[] _lowerBoundaryInclusiveSpecifiers = new[] { '[' };
     private readonly char[] _lowerBoundaryExclusiveSpecifiers = new[]
     {
         '(',
