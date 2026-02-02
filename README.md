@@ -1,4 +1,4 @@
-![SharperHacks logo](Math\SHLLC-Logo.jpg)
+![SharperHacks logo](https://raw.githubusercontent.com/SharperHacks-org/Assets/main/Images/SHLLC-Logo.png)
 # Math Library for .NET
 ## [SharperHacks.CoreLibs.Math](Math\README.md)
 ## [SharperHacks.CoreLibs.Math.Interfaces](Math.Interfaces\README.md)

@@ -29,7 +29,7 @@
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <ImplicitUsings>enable</ImplicitUsings>
     <IncludeSymbols>True</IncludeSymbols>
-    <PackageIcon>SHLLC-Logo.128.100.jpg</PackageIcon>
+    <PackageIcon>SHLLC-Logo.128.100.png</PackageIcon>
     <PackageProjectUrl>https://github.com/SharperHacks-org/Math</PackageProjectUrl>
     <PackageTags>Math;Intervals;Statistics</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -55,8 +55,8 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(ProjectDir)*.jpg" Pack="true" PackagePath="\" />
-    <None Update="$(ProjectDir)*.jpg">
+    <None Include="$(SolutionDir)*.png" Pack="true" PackagePath="\" />
+    <None Update="$(SolutionDir)*.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
