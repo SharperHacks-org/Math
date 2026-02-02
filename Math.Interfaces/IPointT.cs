@@ -9,6 +9,7 @@ namespace SharperHacks.CoreLibs.Math.Interfaces;
 /// A generic point interface.
 /// </summary>
 /// <typeparam name="TNumeric">The numeric type used to specify locations</typeparam>
+[Obsolete("Moved to SharperHacks.CoreLibs.Interfaces.")]
 public interface IPoint<TNumeric> where TNumeric : INumber<TNumeric>
 {
     /// <summary>

@@ -5,6 +5,7 @@ namespace SharperHacks.CoreLibs.Math.Interfaces;
 /// <summary>
 /// Enumeration representing whether an interval boundary is inclusive/exclusive.
 /// </summary>
+[Obsolete("Moved to SharperHacks.CoreLibs.Interfaces.")]
 public enum IntervalBoundaryType
 {
     /// <summary>

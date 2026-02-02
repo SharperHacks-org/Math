@@ -9,6 +9,7 @@ namespace SharperHacks.CoreLibs.Math.Interfaces;
 /// A generic polygon interface.
 /// </summary>
 /// <typeparam name="T">The numeric type used to specify locations</typeparam>
+[Obsolete("Moved to SharperHacks.CoreLibs.Interfaces.")]
 public interface IPolygon<T> where T : INumber<T>
 {
     /// <summary>

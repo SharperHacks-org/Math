@@ -16,6 +16,7 @@ namespace SharperHacks.CoreLibs.Math.Interfaces;
 /// and behaviors in implementations of this interface.
 /// </para>
 /// </remarks>
+[Obsolete("Moved to SharperHacks.CoreLibs.Interfaces.")]
 public interface IInterval<T> where T : IComparable<T>
 {
     /// <summary>
