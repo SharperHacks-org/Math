@@ -1,5 +1,7 @@
 ![SharperHacks logo](https://raw.githubusercontent.com/SharperHacks-org/Assets/main/Images/SHLLC-Logo.png)
-# Math Library for .NET
+# THIS PROJECT HAS BEEN MOVED TO [codeberg.org](https://codeberg.org/SharperHacks-org/Math).
+# THIS REPO WILL BE DELETED SOON.
+## Math Library for .NET
 ## [SharperHacks.CoreLibs.Math](Math\README.md)
 ## [SharperHacks.CoreLibs.Math.Interfaces](Math.Interfaces\README.md)
 
@@ -8,5 +10,6 @@ A collection of Math interfaces and routines.
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
 Contact: joseph@sharperhacks.org
+
 
 
